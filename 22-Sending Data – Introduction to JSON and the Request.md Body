@@ -1,0 +1,100 @@
+# **Chapter 22: Sending Data – Introduction to JSON and the Request Body**
+
+## **22.1 The Need for Structured Data**
+
+APIs cannot process free-form text. To perform actions like adding an item to a cart, you must send data in a structured format that the server can parse and understand. The universal standard for this is **JSON (JavaScript Object Notation)**.
+
+## **22.2 What is JSON?**
+
+JSON is a lightweight, text-based data format used for transmitting structured information between a client and a server. Its key advantages are that it is both **human-readable** and **machine-parsable**.
+
+## **22.3 JSON Syntax Fundamentals**
+
+JSON is built on two primary structures: **Objects** and **Arrays**.
+
+### **JSON Objects**
+An object is an unordered collection of key-value pairs, enclosed in curly braces `{}`.
+*   **Key:** Always a string (must be enclosed in double quotes `" "`).
+*   **Value:** Can be a string, number, boolean (`true`/`false`), another object, an array, or `null`.
+*   **Key-Value Pair:** Separated by a colon `:`.
+*   **Multiple Pairs:** Separated by commas `,`.
+
+**Example Object:**
+```json
+{
+  "firstName": "John",
+  "age": 22,
+  "isStudent": false
+}
+```
+
+### **JSON Arrays**
+An array is an ordered list of values, enclosed in square brackets `[]`.
+*   **Values:** Can be any JSON data type (string, number, object, array, boolean, null).
+*   **Multiple Values:** Separated by commas `,`.
+
+**Example Array:**
+```json
+["netflix", "mountain biking", "reading"]
+```
+
+### **Complex Structures**
+Objects and arrays can be nested within each other to create complex data structures.
+
+**Example: Array of Objects**
+```json
+[
+  {
+    "productId": 4643,
+    "quantity": 2
+  },
+  {
+    "productId": 2890,
+    "quantity": 1
+  }
+]
+```
+
+## **22.4 Data Types in JSON**
+
+| Data Type | Format | Example |
+| :--- | :--- | :--- |
+| **String** | Enclosed in double quotes | `"Hello World"` |
+| **Number** | No quotes | `42`, `3.14` |
+| **Boolean** | No quotes | `true`, `false` |
+| **Object** | Enclosed in `{}` | `{"key": "value"}` |
+| **Array** | Enclosed in `[]` | `["value1", "value2"]` |
+| **Null** | The word `null` | `null` |
+
+## **22.5 Sending JSON in a POST Request**
+
+To send data to an API (e.g., to add an item to a cart), you must:
+1.  Set the HTTP method to **POST** (or PUT/PATCH).
+2.  Navigate to the **Body** tab in Postman.
+3.  Select the **`raw`** option.
+4.  From the dropdown next to "raw", select **`JSON`**.
+5.  Write a valid JSON object in the text area that defines the data you want to send.
+
+**Critical Rule:** The JSON you send **must be valid**. Missing commas, trailing commas, or incorrect quotes will cause the request to fail with a parsing error on the server side.
+
+## **22.6 Common Mistake: Sending Plain Text**
+
+A common error is sending unstructured text (e.g., `"I would like to order fresh spinach"`) instead of valid JSON. The server expects a specific structure (e.g., `{"productId": 4643, "quantity": 1}`) and will return an error (e.g., `400 Bad Request`) if it receives malformed data.
+
+***
+### **Key Concepts**
+
+*   **JSON (JavaScript Object Notation):** A lightweight data-interchange format that uses human-readable text to store and transmit data objects.
+*   **Key-Value Pair:** A fundamental data element consisting of two linked items: a key (name) and its associated value.
+*   **Object:** An unordered set of key-value pairs, represented by `{ }`.
+*   **Array:** An ordered collection of values, represented by `[ ]`.
+*   **Request Body:** The part of an HTTP request that contains the data sent to the server, typically used with POST, PUT, and PATCH methods.
+
+***
+### **Key Takeaways**
+
+*   APIs require data to be sent in a **structured format**, almost always **JSON**.
+*   JSON uses **key-value pairs** organized into **objects** `{}` and **arrays** `[]`.
+*   **Strings** must be in double quotes; **numbers** and **booleans** are not quoted.
+*   **Syntax is critical;** invalid JSON will cause the request to fail.
+*   To send data, use the **Body** tab in Postman, select **`raw`** and **`JSON`**, and write a valid JSON object.
